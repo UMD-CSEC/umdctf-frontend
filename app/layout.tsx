@@ -4,7 +4,6 @@ import { Inter } from 'next/font/google';
 
 // Components
 import NavBar from '@/app/NavBar';
-import Equalizer from '@/app/Equalizer';
 import Footer from '@/app/Footer';
 import ScrollableBackground from '@/app/ScrollableBackground';
 
@@ -21,10 +20,10 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
     title: {
-        absolute: 'b01lers CTF 2024',
-        template: '%s - b01lers CTF 2024'
+        absolute: 'UMDCTF 2024',
+        template: '%s - UMDCTF 2024'
     },
-    description: 'b01lers CTF is jeopardy-style CTF hosted by the b01lers CTF team at Purdue University.',
+    description: 'UMDCTF is the jeopardy-style CTF hosted by the UMDCSEC CTF team at the University of Maryland, College Park.',
 }
 
 export default function RootLayout(props: { children: ReactNode }) {
@@ -43,7 +42,6 @@ export default function RootLayout(props: { children: ReactNode }) {
                                 <NavBar />
                                 {props.children}
 
-                                <Equalizer />
                                 <Footer />
                             </FlagDispatchProvider>
                         </PreferencesProvider>

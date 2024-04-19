@@ -50,31 +50,30 @@ export default function Challenges(props: ChallengesProps) {
         return res;
     }, [filtered]);
 
-    return (
-        <div className="flex flex-col gap-3 flex-grow min-w-0">
-            {preferences.grid ? Object.entries(grouped).map(([category, challs]) => (
-                <section key={category}>
-                    <h2 className="text-2xl font-mono mb-3">
-                        {category}
-                    </h2>
-
-                    <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 mb-3">
-                        {challs.map((c) => (
-                            <GridChallenge
-                                {...c}
-                                solved={solved.has(c.name)}
-                                key={c.id}
-                            />
-                        ))}
-                    </div>
-                </section>
-            )) : filtered.map((c) => (
-                <Challenge
-                    {...c}
-                    solved={solved.has(c.name)}
-                    key={c.id}
-                />
-            ))}
+    console.log(preferences.classic);
+    return preferences.classic ? (
+        <div className="container relative pt-32 pb-14 flex flex-col md:flex-row gap-6">
+            <div className="flex flex-col gap-3 flex-grow min-w-0">
+                {filtered.map((c) => (
+                    <Challenge
+                        {...c}
+                        solved={solved.has(c.name)}
+                        key={c.id}
+                    />
+                ))}
+            </div>
         </div>
-    )
+    ) : (
+        <div className="container relative pt-32 pb-14 flex flex-col md:flex-row-reverse md:mr-0 md:max-w-[40%] gap-6">
+            <div className="flex flex-col gap-3 flex-grow min-w-0">
+                {filtered.map((c) => (
+                    <Challenge
+                        {...c}
+                        solved={solved.has(c.name)}
+                        key={c.id}
+                    />
+                ))}
+            </div>
+        </div>
+    );
 }

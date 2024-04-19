@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     env: {
-        API_BASE: 'http://ctf.b01lers.com:9000/api/v1',
+        API_BASE: 'http://localhost:8080/api/v1',
         KLODD_URL: 'https://instancer.b01lersc.tf'
     },
     logging: {

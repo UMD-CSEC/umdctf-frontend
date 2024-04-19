@@ -2,13 +2,11 @@ import {createContext} from 'react';
 
 
 type Preferences = {
-    grid: boolean,
-    animations: boolean,
+    classic: boolean,
 }
 
 export const defaultPreferences: Preferences = {
-    grid: false,
-    animations: true
+    classic: false
 }
 
 type PreferencesContext = {
