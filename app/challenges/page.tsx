@@ -13,6 +13,7 @@ import {getMyProfile} from '@/util/profile';
 import {AUTH_COOKIE_NAME} from '@/util/config';
 import PreferencesContext from '@/contexts/PreferencesContext';
 import { useContext } from 'react';
+import ThemeSwitcher from '../ThemeSwitcher';
 
 
 export const metadata: Metadata = {
@@ -30,11 +31,13 @@ export default async function ChallengesPage() {
 
     return challenges.kind === 'goodChallenges' ? (
         //<div className="container relative pt-32 pb-14 flex flex-col md:flex-row gap-6">
-        //</div>
-        <Challenges
-            challenges={challenges.data}
-            solves={profile.data.solves}
-        />
+        <div>
+            <ThemeSwitcher />
+            <Challenges
+                challenges={challenges.data}
+                solves={profile.data.solves}
+            />
+        </div>
     ) : (
         <CTFNotStarted />
     )

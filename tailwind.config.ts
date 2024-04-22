@@ -26,9 +26,9 @@ const config: Config = {
       },
       colors: {
         background: '#111',
-        theme: '#c22026',
-        'theme-dark': '#9A1B1F',
-        'theme-bright': '#ff1e1e',
+        theme: '#a9ab16',
+        'theme-dark': '#8c882e',
+        'theme-bright': '#fff645',
         success: '#0dd157',
         primary: '#BABABA',
         secondary: '#757575',

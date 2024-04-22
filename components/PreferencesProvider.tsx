@@ -8,7 +8,7 @@ export default function PreferencesProvider(props: {children: ReactNode}) {
     const [preferences, setPreferences] = useState(defaultPreferences);
     const hasRetrievedPreferences = useRef(false);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         // TODO: better way of doing this?
         if (!hasRetrievedPreferences.current) {
             hasRetrievedPreferences.current = true;

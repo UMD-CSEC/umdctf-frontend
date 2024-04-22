@@ -12,8 +12,8 @@ import PreferencesContext from '@/contexts/PreferencesContext';
 
 // Utils
 import type {Challenge as ChallengeData} from '@/util/challenges';
-import type {Solve} from '@/util/profile';
-
+import Filters from './Filters';
+import { Solve } from '@/util/profile';
 
 type ChallengesProps = {
     challenges: ChallengeData[]
@@ -53,6 +53,10 @@ export default function Challenges(props: ChallengesProps) {
     console.log(preferences.classic);
     return preferences.classic ? (
         <div className="container relative pt-32 pb-14 flex flex-col md:flex-row gap-6">
+            <Filters
+                challenges={props.challenges}
+                solves={props.solves}
+            />
             <div className="flex flex-col gap-3 flex-grow min-w-0">
                 {filtered.map((c) => (
                     <Challenge
@@ -64,15 +68,18 @@ export default function Challenges(props: ChallengesProps) {
             </div>
         </div>
     ) : (
-        <div className="container relative pt-32 pb-14 flex flex-col md:flex-row-reverse md:mr-0 md:max-w-[40%] gap-6">
-            <div className="flex flex-col gap-3 flex-grow min-w-0">
-                {filtered.map((c) => (
-                    <Challenge
-                        {...c}
-                        solved={solved.has(c.name)}
-                        key={c.id}
-                    />
-                ))}
+        <div>
+            <canvas id="henry_canvas" className="fixed min-w-[100vw] min-h-[100vh] max-w-[100vw] max-h-[100vh] top-0 left-0 bg-black"></canvas>
+            <div className="container relative pt-32 pb-14 pr-10 flex flex-col md:flex-row-reverse md:mr-0 md:max-w-[40%] gap-6">
+                <div className="flex flex-col gap-3 flex-grow min-w-0">
+                    {filtered.map((c) => (
+                        <Challenge
+                            {...c}
+                            solved={solved.has(c.name)}
+                            key={c.id}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 'use client'
 
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import Markdown from 'react-markdown';
 import {BiCheck} from 'react-icons/bi';
 
@@ -10,13 +10,15 @@ import FlagSubmissionInput from '@/app/challenges/FlagSubmissionInput';
 
 // Utils
 import type {Challenge} from '@/util/challenges';
+import PreferencesContext from '@/contexts/PreferencesContext';
 
 
 export default function Challenge(props: Challenge & {solved: boolean}) {
     const [showSolves, setShowSolves] = useState(false);
+    const {preferences} = useContext(PreferencesContext);
 
     return (
-        <div className="bg-black/50 px-6 py-4 rounded border border-tertiary backdrop-blur-sm">
+        <div className="bg-black/50 px-6 py-4 rounded border border-tertiary backdrop-blur-sm hover:border-theme-dark">
             <div className="flex items-center gap-2">
                 <h3 className="font-semibold">
                     {props.category}/{props.name}
@@ -45,12 +47,14 @@ export default function Challenge(props: Challenge & {solved: boolean}) {
                 {props.description}
             </Markdown>
 
-            <FlagSubmissionInput
-                challenge={props}
-                solved={props.solved}
-            />
+            {preferences.classic ? (
+                <FlagSubmissionInput
+                    challenge={props}
+                    solved={props.solved}
+                />
+            ) : (<></>)}
 
-            {props.files.length > 0 && (
+            {preferences.classic && props.files.length > 0 && (
                 <div className="flex flex-wrap gap-1.5 mt-3 text-xs font-mono font-semibold">
                     {props.files.map((f) => (
                         <a
