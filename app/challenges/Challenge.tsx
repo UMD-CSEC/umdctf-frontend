@@ -18,7 +18,8 @@ export default function Challenge(props: Challenge & {solved: boolean}) {
     const {preferences} = useContext(PreferencesContext);
 
     return (
-        <div className="bg-black/50 px-6 py-4 rounded border border-tertiary backdrop-blur-sm hover:border-theme-dark">
+        <div className={`bg-black/50 px-6 py-4 relative rounded border border-tertiary backdrop-blur-sm
+            ${preferences.classic ? "" : "hover:border-theme-dark hover:-translate-x-8 transition duration-200 cursor-pointer"}`}>
             <div className="flex items-center gap-2">
                 <h3 className="font-semibold">
                     {props.category}/{props.name}
@@ -28,14 +29,24 @@ export default function Challenge(props: Challenge & {solved: boolean}) {
                     <BiCheck className="flex-none bg-success/40 p-0.5 mb-0.5 rounded-full" />
                 )}
 
-                <button
-                    className="text-theme-bright hover:text-theme transition duration-200 ml-auto text-right text-pretty"
-                    onClick={() => setShowSolves(true)}
-                >
-                    {props.solves} solve{props.solves === 1 ? '' : 's'}
-                    {' / '}
-                    {props.points} point{props.points === 1 ? '' : 's'}
-                </button>
+                {preferences.classic ? (
+                    <button
+                        className="text-theme-bright hover:text-theme transition duration-200 ml-auto text-right text-pretty"
+                        onClick={() => setShowSolves(true)}
+                    >
+                        {props.solves} solve{props.solves === 1 ? '' : 's'}
+                        {' / '}
+                        {props.points} point{props.points === 1 ? '' : 's'}
+                    </button>
+                ) : (
+                    <p
+                        className="text-theme-bright transition duration-200 ml-auto text-right text-pretty"
+                    >
+                        {props.solves} solve{props.solves === 1 ? '' : 's'}
+                        {' / '}
+                        {props.points} point{props.points === 1 ? '' : 's'}
+                    </p>
+                )}
             </div>
             <h4 className="text-sm text-primary mt-0.5">
                 {props.author}

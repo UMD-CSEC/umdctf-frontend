@@ -75,6 +75,62 @@ export async function getChallenges(token: string): Promise<ChallengesResponse |
                 sortWeight: 3,
                 solves: 0,
                 points: 500,
+            },
+            {
+                name: "placeholder 1",
+                id: "chall4",
+                files: [{
+                    url: "http://localhost:1377/baguette",
+                    name: "placeholder"
+                }],
+                category: "misc",
+                author: "impostor",
+                description: "cool funny description that is reasonably long so i can see what it looks like in the preview wow wow wow wow wow wow wow",
+                sortWeight: 3,
+                solves: 0,
+                points: 500,
+            },
+            {
+                name: "placeholder 2",
+                id: "chall5",
+                files: [{
+                    url: "http://localhost:1377/baguette",
+                    name: "placeholder"
+                }],
+                category: "misc",
+                author: "impostor",
+                description: "cool funny description that is reasonably long so i can see what it looks like in the preview wow wow wow wow wow wow wow",
+                sortWeight: 3,
+                solves: 0,
+                points: 500,
+            },
+            {
+                name: "placeholder 3",
+                id: "chall5",
+                files: [{
+                    url: "http://localhost:1377/baguette",
+                    name: "placeholder"
+                }],
+                category: "misc",
+                author: "impostor",
+                description: "cool funny description that is reasonably long so i can see what it looks like in the preview wow wow wow wow wow wow wow",
+                sortWeight: 3,
+                solves: 0,
+                points: 500,
+            },
+            {
+                name: "placeholder 4",
+                id: "chall5",
+                files: [{
+                    url: "http://localhost:1377/baguette",
+                    name: "placeholder"
+                }],
+                category: "misc",
+                author: "impostor",
+                description: "cool funny description that is reasonably long so i can see what it looks like in the preview wow wow wow wow wow wow wow",
+                sortWeight: 3,
+                solves: 0,
+                points: 500,
             }
         ]
     };

@@ -9,8 +9,8 @@ export default function ScrollableBackground() {
 
     return (
         <img
-            src="/assets/background3.webp"
-            className={'fixed top-0 -z-10 opacity-10 object-cover object-center h-[max(100vh,_100vw)] scale-[1.5] origin-bottom' + (preferences.animations ? ' animate-loop-scroll' : '')}
+            src="/assets/dune.svg"
+            className={'fixed top-0 opacity-10 object-cover object-center min-h-[100vh] max-h-[100vh] origin-bottom'}
         />
     )
 }

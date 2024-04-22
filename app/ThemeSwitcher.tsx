@@ -20,7 +20,7 @@ export default function ThemeSwitcher() {
 
     return (
         <button
-            className="fixed top-3 left-3 rounded-md invisible md:visible z-50 px-4 py-2 border-2 transition duration-200 border-primary text-primary hover:border-white hover:text-white"
+            className="fixed bottom-3 left-3 rounded-md invisible md:visible z-50 px-4 py-2 border-2 transition duration-200 border-primary text-primary hover:border-white hover:text-white"
             onClick={() => toggleTheme()}
         >
             <img className="invert max-w-[32px] max-h-[32px]" src={img} />
