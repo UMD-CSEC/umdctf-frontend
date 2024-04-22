@@ -32,7 +32,7 @@ export default function Timer(props: TimerProps) {
                 00
             </div>
             <p className="text-primary text-sm text-center">
-                b01lers CTF is over!
+                UMDCTF is over!
             </p>
         </div>
     );
@@ -54,9 +54,9 @@ export default function Timer(props: TimerProps) {
             </div>
             <p className="text-primary text-sm text-center">
                 {time > ctfStart ? (
-                    'left until b01lers CTF ends.'
+                    'left until UMDCTF ends.'
                 ) : (
-                    'days until b01lers CTF.'
+                    'days until UMDCTF.'
                 )}
             </p>
         </div>
