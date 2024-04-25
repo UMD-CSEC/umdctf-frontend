@@ -32,7 +32,7 @@ export default async function ChallengesPage() {
     return challenges.kind === 'goodChallenges' ? (
         //<div className="container relative pt-32 pb-14 flex flex-col md:flex-row gap-6">
         <div>
-            <ThemeSwitcher />
+            {/*<ThemeSwitcher />*/}
             <Challenges
                 challenges={challenges.data}
                 solves={profile.data.solves}

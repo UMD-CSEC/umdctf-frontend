@@ -4,7 +4,7 @@ import {useContext, useMemo} from 'react';
 
 // Components
 import Challenge from '@/app/challenges/Challenge';
-import GridChallenge from '@/app/challenges/GridChallenge';
+//import GridChallenge from '@/app/challenges/GridChallenge';
 
 // Contexts
 import FilterContext from '@/contexts/FilterContext';

@@ -10,6 +10,24 @@ export default function Sponsors() {
             </SectionHeader>
 
             <Sponsor
+                href="https://www.trailofbits.com/"
+                src="/assets/sponsors/trail-of-bits.png"
+                name="Trail of Bits"
+            >
+                Trail of Bits helps secure the world's most targeted organizations and products.
+                We combine high-end security research with a real-world attacker mentality to reduce risk and fortify code.
+            </Sponsor>
+
+            <Sponsor
+                href="https://binary.ninja"
+                src="/assets/sponsors/binary-ninja.png"
+                name="Vector 35"
+            >
+                Binary Ninja is an interactive decompiler, disassembler, debugger, and binary analysis platform built by reverse engineers, for reverse engineers.
+                Binary Ninja is actively used by malware analysts, vulnerability researchers, and software developers worldwide.
+            </Sponsor>
+
+            <Sponsor
                 href="https://www.zellic.io/"
                 src="/assets/sponsors/zellic.svg"
                 name="Zellic"
@@ -23,31 +41,15 @@ export default function Sponsors() {
             </Sponsor>
 
             <Sponsor
-                href="https://www.cc-sw.com/"
-                src="/assets/sponsors/caesar-creek.jpg"
-                name="Caesar Creek Software"
+                href="https://ztc.io/"
+                src="/assets/sponsors/ztc.png"
+                name="ZTC"
             >
-                Caesar Creek Software works with various government agencies to perform cyber research into major operating
-                system platforms, software security products, personal computers, cell phones, networking equipment, and
-                IoT devices. We specialize in offensive information operations, reverse engineering, vulnerability analysis,
-                and exploit development. We have a robust Internal Research and Development program that lets us do cool
-                stuff on our own. If it has a processor, we love taking it apart to see what makes it tick. We offer a
-                highly competitive compensation package including one of the best benefit packages in Ohio and starting
-                in 2019 we are an employee-owned company. U.S. citizenship is required for all positions, as well as the
-                ability to obtain a high-level security clearance.
-            </Sponsor>
-
-            <Sponsor
-                href="https://www.cerias.purdue.edu/"
-                src="/assets/sponsors/CERIAS.png"
-                name="CERIAS"
-            >
-                The Center for Education and Research in Information Assurance and Security (CERIAS), a cross-cutting
-                institute at Purdue University, is the world’s foremost interdisciplinary academic center for cyber and
-                cyber-physical systems; more than a hundred researchers addressing issues of security, privacy, resiliency,
-                trusted electronics, autonomy and explainable artificial intelligence. CERIAS brings together world-class
-                faculty, students and industry partners to design, build and maintain trusted cyber/cyber-physical systems.
-                CERIAS serves as an unbiased resource to the worldwide community.
+                ZTC specializes in the design and development of digital forensics tools.
+                Established in 2004, the company focuses on creating new and innovative solutions to meet the unique needs of each of our customers.
+                We develop widely deployed and highly regarded digital forensic tools.
+                Few companies can match our experience and expertise when it comes to creating customized digital forensics software.
+                Our tools process petabytes of data, and reveal billions of data points for our customers.
             </Sponsor>
         </section>
     )

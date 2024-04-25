@@ -3,11 +3,15 @@ import SectionHeader from '@/components/SectionHeader';
 
 
 export default function Prizes() {
-    const openDivisionPrizes = ['$400', '$200', '$100'];
-    const purdueDivisionPrizes = [
-        '4x Three Month Tryhackme Premium Vouchers',
-        '4x Two Month Tryhackme Premium Vouchers',
-        '4x One month Tryhackme Premium Vouchers'
+    const openPrizes = [
+        '$1500 + 1 Binary Ninja Personal License',
+        '$1000 + 1 Binary Ninja Persona License',
+        '$500'
+    ];
+    const studentPrizes = [
+        '$1000 + 1 Binary Ninja Personal License',
+        '$600 + 1 Binary Ninja Personal License',
+        '$400 + 1 Binary Ninja Personal License',
     ];
 
     return (
@@ -18,7 +22,7 @@ export default function Prizes() {
 
             <div className="flex flex-col lg:flex-row gap-4 mb-4">
                 <PrizeTable division="Open">
-                    {openDivisionPrizes.map((p, i) => (
+                    {openPrizes.map((p, i) => (
                         <div className="table-row bg-black/20 divide-x divide-secondary" key={i}>
                             <div className="table-cell p-2 border-t border-secondary text-right">{i + 1}.</div>
                             <div className="table-cell px-4 py-2 border-t border-secondary">{p}</div>
@@ -26,8 +30,8 @@ export default function Prizes() {
                     ))}
                 </PrizeTable>
 
-                <PrizeTable division="Purdue">
-                    {purdueDivisionPrizes.map((p, i) => (
+                <PrizeTable division="Student">
+                    {studentPrizes.map((p, i) => (
                         <div className="table-row bg-black/20 divide-x divide-secondary" key={i}>
                             <div className="table-cell p-2 border-t border-secondary text-right">{i + 1}.</div>
                             <div className="table-cell px-4 py-2 border-t border-secondary">{p}</div>
@@ -36,9 +40,8 @@ export default function Prizes() {
                 </PrizeTable>
             </div>
 
-            <p className="text-sm text-primary">
-                Prize transfers will be arranged with Venmo or Cashapp and can only be transferred to an entity in
-                the United States.
+            <p className="text-sm text-white">
+                <b>Best Binary Ninja Writeup:</b> 1 Personal Binary Ninja License
             </p>
         </>
     )

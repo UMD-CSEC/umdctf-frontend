@@ -32,44 +32,44 @@ export default function FlagDispatchProvider(props: {children: ReactNode}) {
     }
 
     function rejectFlag() {
-        if (!rejectQueue.current.length) {
-            const available = rejectVideoRefs.current.filter((s) => !!s);
-            if (!available.length) return;
+        //if (!rejectQueue.current.length) {
+        //    const available = rejectVideoRefs.current.filter((s) => !!s);
+        //    if (!available.length) return;
 
-            rejectQueue.current = shuffle(available);
-        }
+        //    rejectQueue.current = shuffle(available);
+        //}
 
-        // Play a special video at 15 wrong flags submitted in a row
-        if (appleBottomJeansRef.current && wrongFlagsSubmitted.current === 15) {
-            rejectQueue.current.unshift(appleBottomJeansRef.current);
-        }
+        //// Play a special video at 15 wrong flags submitted in a row
+        //if (appleBottomJeansRef.current && wrongFlagsSubmitted.current === 15) {
+        //    rejectQueue.current.unshift(appleBottomJeansRef.current);
+        //}
 
-        // Play another special video at 30 wrong flags submitted in a row
-        if (gunRef.current && wrongFlagsSubmitted.current >= 30) {
-            rejectQueue.current.unshift(gunRef.current);
-            wrongFlagsSubmitted.current = 0;
-        }
+        //// Play another special video at 30 wrong flags submitted in a row
+        //if (gunRef.current && wrongFlagsSubmitted.current >= 30) {
+        //    rejectQueue.current.unshift(gunRef.current);
+        //    wrongFlagsSubmitted.current = 0;
+        //}
 
-        const video = rejectQueue.current.shift()!;
-        video.currentTime = 0;
-        void video.play();
+        //const video = rejectQueue.current.shift()!;
+        //video.currentTime = 0;
+        //void video.play();
 
-        wrongFlagsSubmitted.current++;
+        //wrongFlagsSubmitted.current++;
     }
 
     function acceptFlag() {
-        if (!acceptQueue.current.length) {
-            const available = acceptVideoRefs.current.filter((s) => !!s);
-            if (!available.length) return;
+        //if (!acceptQueue.current.length) {
+        //    const available = acceptVideoRefs.current.filter((s) => !!s);
+        //    if (!available.length) return;
 
-            acceptQueue.current = shuffle(available);
-        }
+        //    acceptQueue.current = shuffle(available);
+        //}
 
-        const video = acceptQueue.current.shift()!;
-        video.currentTime = 0;
-        void video.play();
+        //const video = acceptQueue.current.shift()!;
+        //video.currentTime = 0;
+        //void video.play();
 
-        wrongFlagsSubmitted.current = 0;
+        //wrongFlagsSubmitted.current = 0;
     }
 
     function appendToRejectVideos(r: HTMLVideoElement) {
@@ -82,7 +82,7 @@ export default function FlagDispatchProvider(props: {children: ReactNode}) {
 
     return (
         <FlagDispatchContext.Provider value={{rejectFlag, acceptFlag, dispatchNotif}}>
-            {Array(6).fill(0).map((_, i) => (
+            {/*{Array(6).fill(0).map((_, i) => (
                 <video
                     className="fixed top-0 w-screen h-screen pointer-events-none z-50 object-cover object-center"
                     ref={appendToRejectVideos}
@@ -118,6 +118,7 @@ export default function FlagDispatchProvider(props: {children: ReactNode}) {
                 <source src="/assets/videos/special2-chrome.webm" type="video/webm" />
             </video>
 
+            */}
             <div className="fixed w-screen h-screen flex flex-col gap-2 items-end justify-end py-8 px-8 pointer-events-none z-20">
                 {notifs}
             </div>

@@ -9,39 +9,33 @@ export default function Rules() {
             </SectionHeader>
             <ol className="list-decimal list-outside pl-6 space-y-2 mb-16">
                 <li>
-                    During the competition, each person may only be a part of one team total, and only members of a
-                    given team may assist in solving a challenge for that team.
+                    Do not attack the infrastructure. This includes csec.umd.edu, the umdctf.io platform,
+                    and any external communication channels or other platforms associated with UMDCTF.
                 </li>
                 <li>
-                    Each team must have a valid email address that should serve as the point of contact.
+                    All flags are of the format
+                    {' '}<code className="bg-black/40 px-2 py-1 text-primary rounded">{'UMDCTF{[a-zA-Z0-9_,.\'"?!@$<>*:-]+}'}</code>{' '}
+                    unless otherwise noted in the challenge description. Do not bruteforce flags.
                 </li>
                 <li>
-                    For the <strong>Open</strong> division: there is no limit on team size, and teams can be from
-                    anywhere.
+                    Be respectful - regardless of skill level or any other factor. We will not tolerate
+                    derogatory and discriminatory language or behavior of any kind.
                 </li>
                 <li>
-                    For the <strong>Purdue</strong> division: teams must be composed of current Purdue students to be
-                    eligible for prizes, and there is a maximum team size of 4. Sign up with a @purdue.edu email to
-                    gain access to the Purdue division.
+                    Make a good-faith attempt on challenges before asking for help from
+                    UMDCTF organizers/developers (i.e: no begging for flags).
                 </li>
                 <li>
-                    Flags are of the format{' '}
-                    <code className="bg-black/40 px-2 py-1 text-primary rounded">{'bctf{[ -~]+}'}</code>{' '}
-                    unless otherwise noted on the challenge description. No brute-force guessing flags.
+                    Do not ask for help on challenges outside of tickets. Competitors should report
+                    unsolicited help requests in tickets.
                 </li>
                 <li>
-                    No flag or hint sharing. Do not solicit or accept hints or guidance from any person except through
-                    official support channels.
+                    Only collaborate with the people in your team.
+                    Do not share flags or methodology outside of your team until the end of UMDCTF.
                 </li>
                 <li>
-                    Do not attempt to attack or interfere with other teams or any servers used in this competition that
-                    are not explicitly designated for being hacked in a problem.
+                    Do not bruteforce the online infrastructure - it is not necessary for any challenge.
                 </li>
-                <li>
-                    Do not perform any sort of online bruteforce against any of our systems.
-                </li>
-                <li>Learn as much as you can, and have a good time!</li>
-                <li>Pay it forward.</li>
             </ol>
         </>
     )
