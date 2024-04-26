@@ -1,6 +1,6 @@
 'use client'
 
-import {useContext, useMemo} from 'react';
+import {useContext, useMemo, useRef, useEffect} from 'react';
 
 // Components
 import Challenge from '@/app/challenges/Challenge';
@@ -14,6 +14,14 @@ import PreferencesContext from '@/contexts/PreferencesContext';
 import type {Challenge as ChallengeData} from '@/util/challenges';
 import Filters from './Filters';
 import { Solve } from '@/util/profile';
+
+import { Renderer } from './webgl/renderer';
+import { Quality } from "./webgl/settings/quality";
+import { setupControls } from "./controls/setup";
+
+import dynamic from 'next/dynamic';
+
+const Canvas = dynamic(()=>import('./Canvas'), {ssr: false});
 
 type ChallengesProps = {
     challenges: ChallengeData[]
@@ -50,7 +58,31 @@ export default function Challenges(props: ChallengesProps) {
         return res;
     }, [filtered]);
 
-    console.log(preferences.classic);
+    const canvasRef = useRef(null);
+    const lineRef = useRef(null);
+    const line2Ref = useRef(null);
+    const miscRef = useRef(null);
+    const webRef = useRef(null);
+    const pwnRef = useRef(null);
+    const mlRef = useRef(null);
+    const revRef = useRef(null);
+    const cryptoRef = useRef(null);
+    let renderer = {};
+
+    renderer.numChallenges = filtered.length;
+    renderer.cats = [miscRef, webRef, pwnRef, mlRef, revRef, cryptoRef];
+    renderer.catLines = [];
+    for (let i = 0; i < 12; i++) {
+        renderer.catLines.push(useRef(null));
+    }
+
+    const qualityChangeHandler = (e) => {
+        renderer.renderer.setQuality(Quality[e.target.value]);
+    };
+
+    const styles = {"font-family": "'Dune Rise'", "fontSize": "14px"};
+
+    // console.log("preferences.classic:", preferences.classic);
     return preferences.classic ? (
         <div className="container relative pt-32 pb-14 flex flex-col md:flex-row gap-6">
             <Filters
@@ -69,18 +101,52 @@ export default function Challenges(props: ChallengesProps) {
         </div>
     ) : (
         <div>
-            <canvas id="henry_canvas" className="fixed min-w-[100vw] min-h-[100vh] max-w-[100vw] max-h-[100vh] top-0 left-0 bg-black"></canvas>
+            <Canvas innerRef={canvasRef} renderer={renderer} />
+            <svg className={'fixed h-full w-full pointer-events-none'}>
+                <line strokeWidth={2} ref={lineRef} />
+                <line strokeWidth={2} ref={line2Ref} />
+                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={miscRef}>arrakis - misc</text>
+                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={webRef}>caladan - web</text>
+                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={pwnRef}>giedi prime - pwn</text>
+                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={mlRef}>ix - ml</text>
+                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={revRef}>salusa secundus - rev</text>
+                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={cryptoRef}>tleilax - crypto</text>
+                <line strokeWidth={1} ref={renderer.catLines[0]} />
+                <line strokeWidth={1} ref={renderer.catLines[1]} />
+                <line strokeWidth={1} ref={renderer.catLines[2]} />
+                <line strokeWidth={1} ref={renderer.catLines[3]} />
+                <line strokeWidth={1} ref={renderer.catLines[4]} />
+                <line strokeWidth={1} ref={renderer.catLines[5]} />
+                <line strokeWidth={1} ref={renderer.catLines[6]} />
+                <line strokeWidth={1} ref={renderer.catLines[7]} />
+                <line strokeWidth={1} ref={renderer.catLines[8]} />
+                <line strokeWidth={1} ref={renderer.catLines[9]} />
+                <line strokeWidth={1} ref={renderer.catLines[10]} />
+                <line strokeWidth={1} ref={renderer.catLines[11]} />
+            </svg>
             <div className="container relative pt-32 pb-14 pr-10 flex flex-col md:flex-row-reverse md:mr-0 md:max-w-[40%] gap-6">
                 <div className="flex flex-col gap-3 flex-grow min-w-0">
-                    {filtered.map((c) => (
+                    {filtered.map((c, idx) => (
                         <Challenge
                             {...c}
                             solved={solved.has(c.name)}
                             key={c.id}
+                            renderer={renderer}
+                            index={idx}
+                            lineRef={lineRef}
+                            line2Ref={line2Ref}
                         />
                     ))}
                 </div>
             </div>
+            <select className={'fixed top-2 right-1'} onChange={qualityChangeHandler} defaultValue={'LOW'}>
+                <option value={'LMAO'}>lmao</option>
+                <option value={'SUPER_SUPER_LOW'}>super super low</option>
+                <option value={'SUPER_LOW'}>super low</option>
+                <option value={'LOW'}>low</option>
+                <option value={'MEDIUM'}>medium</option>
+                <option value={'OPTIMAL'}>optimal</option>
+            </select>
         </div>
     );
 }

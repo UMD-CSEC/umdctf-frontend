@@ -9,6 +9,13 @@ const nextConfig = {
             fullUrl: true,
         },
     },
+    webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+        config.module.rules.push({
+            test: /\.(vert|frag)$/,
+            type: 'asset/source',
+        })
+        return config
+    },
     async rewrites() {
         // Rewrite attempts to call the rCTF backend to their actual destination.
         return [

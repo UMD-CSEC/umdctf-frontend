@@ -17,9 +17,57 @@ export default function Challenge(props: Challenge & {solved: boolean}) {
     const [showSolves, setShowSolves] = useState(false);
     const {preferences} = useContext(PreferencesContext);
 
+    let currentTimeout = null;
+
+    const deselectChallenge = () => {
+        const renderer = props.renderer.renderer;
+        if (renderer === null) return;
+        renderer.deselectChallenge();
+        const line = props.lineRef.current;
+        const line2 = props.line2Ref.current;
+        line.setAttribute("stroke", "");
+        line2.setAttribute("stroke", "");
+        if (currentTimeout !== null) {
+            clearTimeout(currentTimeout);
+            currentTimeout = null;
+        }
+    }
+
+    const selectChallenge = (ele) => {
+        if (currentTimeout !== null) {
+            clearTimeout(currentTimeout);
+            currentTimeout = null;
+        }
+        const renderer = props.renderer.renderer;
+        if (renderer === null) return;
+        /*for (let i = 0; i < props.renderer.cats.length; i++) {
+            const textEle = props.renderer.cats[i].current;
+            const [x, y] = renderer.getPlanetPositionPx(i);
+            textEle.setAttribute("x", x+50);
+            textEle.setAttribute("y", y-9);
+        }*/
+        renderer.selectChallenge(props.index);
+        currentTimeout = setTimeout(() => {
+            const line = props.lineRef.current;
+            const [px, py] = renderer.getChallengePositionPx();
+            line.x1.baseVal.value = px;
+            line.y1.baseVal.value = py;
+            line.x2.baseVal.value = px+100;
+            line.y2.baseVal.value = py;
+            const {x, y, width, height} = ele.target.getBoundingClientRect()
+            const line2 = props.line2Ref.current;
+            line2.x1.baseVal.value = px+100;
+            line2.y1.baseVal.value = py;
+            line2.x2.baseVal.value = x;
+            line2.y2.baseVal.value = y + height/2;
+            line.setAttribute("stroke", "yellow");
+            line2.setAttribute("stroke", "yellow");
+        }, 1000);
+    }
+
     return (
         <div className={`bg-black/50 px-6 py-4 relative rounded border border-tertiary backdrop-blur-sm
-            ${preferences.classic ? "" : "hover:border-theme-dark hover:-translate-x-8 transition duration-200 cursor-pointer"}`}>
+            ${preferences.classic ? "" : "hover:border-theme-dark hover:-translate-x-8 transition duration-200 cursor-pointer"}`} onMouseEnter={selectChallenge} onMouseLeave={deselectChallenge} >
             <div className="flex items-center gap-2">
                 <h3 className="font-semibold">
                     {props.category}/{props.name}

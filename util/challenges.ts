@@ -28,7 +28,7 @@ export async function getChallenges(token: string): Promise<ChallengesResponse |
     const res = await fetch(`${process.env.API_BASE}/challs`, {
         headers: {'Authorization': `Bearer ${token}`}
     });
-    return await res.json();
+    //return await res.json();
 
     return {
         kind: 'goodChallenges',
@@ -69,7 +69,7 @@ export async function getChallenges(token: string): Promise<ChallengesResponse |
                     url: "http://localhost:1377/baguette",
                     name: "baguette"
                 }],
-                category: "ml (definitely not misc)",
+                category: "ml",
                 author: "seg L",
                 description: "impossible segal ml",
                 sortWeight: 3,
@@ -105,13 +105,13 @@ export async function getChallenges(token: string): Promise<ChallengesResponse |
                 points: 500,
             },
             {
-                name: "placeholder 3",
-                id: "chall5",
+                name: "rev 3",
+                id: "chall6",
                 files: [{
                     url: "http://localhost:1377/baguette",
                     name: "placeholder"
                 }],
-                category: "misc",
+                category: "rev",
                 author: "impostor",
                 description: "cool funny description that is reasonably long so i can see what it looks like in the preview wow wow wow wow wow wow wow",
                 sortWeight: 3,
@@ -119,14 +119,42 @@ export async function getChallenges(token: string): Promise<ChallengesResponse |
                 points: 500,
             },
             {
-                name: "placeholder 4",
-                id: "chall5",
+                name: "pwn 4",
+                id: "chall7",
                 files: [{
                     url: "http://localhost:1377/baguette",
                     name: "placeholder"
                 }],
-                category: "misc",
+                category: "pwn",
                 author: "impostor",
+                description: "cool funny description that is reasonably long so i can see what it looks like in the preview wow wow wow wow wow wow wow",
+                sortWeight: 3,
+                solves: 0,
+                points: 500,
+            },
+            {
+                name: "cryptoooooo",
+                id: "chall8",
+                files: [{
+                    url: "http://localhost:1377/baguette",
+                    name: "placeholder"
+                }],
+                category: "crypto",
+                author: "cryptocryptocrypto",
+                description: "cool funny description that is reasonably long so i can see what it looks like in the preview wow wow wow wow wow wow wow",
+                sortWeight: 3,
+                solves: 0,
+                points: 500,
+            },
+            {
+                name: "web of trust",
+                id: "chall9",
+                files: [{
+                    url: "http://localhost:1377/baguette",
+                    name: "placeholder"
+                }],
+                category: "web",
+                author: "edward feng",
                 description: "cool funny description that is reasonably long so i can see what it looks like in the preview wow wow wow wow wow wow wow",
                 sortWeight: 3,
                 solves: 0,

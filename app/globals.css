@@ -5,3 +5,11 @@
 :root {
     color-scheme: dark;
 }
+
+@font-face {
+	font-family: 'Dune Rise';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url(/assets/Dune_Rise.woff2) format('woff2');
+}
