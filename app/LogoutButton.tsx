@@ -21,7 +21,7 @@ export default function LogoutButton() {
     return (
         <>
             <button
-                className="px-4 py-2 border-b-2 transition duration-200 border-primary text-primary hover:border-white hover:text-white"
+                className="px-4 py-2 border-b-2 transition duration-200 border-primary text-primary hover:border-white hover:text-white whitespace-nowrap"
                 onClick={() => setOpen(true)}
             >
                 Log out
@@ -48,7 +48,7 @@ export default function LogoutButton() {
                     </button>
 
                     <button
-                        className="border border-theme-bright text-theme-bright px-4 py-2 rounded hover:bg-theme-bright hover:text-background transition duration-100"
+                        className="border border-theme-bright text-theme-bright px-4 py-2 rounded hover:bg-theme-bright hover:text-background transition duration-100 whitespace-nowrap"
                         onClick={logoutCallback}
                     >
                         Log out

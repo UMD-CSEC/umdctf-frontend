@@ -80,8 +80,13 @@ export default function Challenges(props: ChallengesProps) {
         renderer.renderer.setQuality(Quality[e.target.value]);
     };
 
-    const styles = {"font-family": "'Dune Rise'", "fontSize": "14px"};
+    const styles = {"fontFamily": "'Dune Rise'", "fontSize": "14px"};
 
+    if (window.innerWidth <= 768) {
+        preferences.classic = true;
+    } else {
+        preferences.classic = false;
+    }
     // console.log("preferences.classic:", preferences.classic);
     return preferences.classic ? (
         <div className="container relative pt-32 pb-14 flex flex-col md:flex-row gap-6">

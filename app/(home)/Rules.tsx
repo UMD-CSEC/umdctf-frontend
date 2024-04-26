@@ -14,7 +14,7 @@ export default function Rules() {
                 </li>
                 <li>
                     All flags are of the format
-                    {' '}<code className="bg-black/40 px-2 py-1 text-primary rounded">{'UMDCTF{[a-zA-Z0-9_,.\'"?!@$<>*:-]+}'}</code>{' '}
+                    {' '}<code className="bg-black/40 px-2 py-1 text-primary rounded">{'UMDCTF{[a-zA-Z0-9_,.\'"?!@$<>*:\-+ ]+}'}</code>{' '}
                     unless otherwise noted in the challenge description. Do not bruteforce flags.
                 </li>
                 <li>
