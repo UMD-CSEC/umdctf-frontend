@@ -79,7 +79,7 @@ export default function Challenges(props: ChallengesProps) {
     };
 
     const styles = {"fontFamily": "'Dune Rise'", "fontSize": "14px"};
-    if (window.innerWidth <= 768 || preferences.classic) {
+    if (preferences.classic || (typeof window !== "undefined" && window.innerWidth <= 768)) {
         preferences.classic = true;
     } else {
         preferences.classic = false;

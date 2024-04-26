@@ -184,12 +184,11 @@ export class Renderer {
 
         this.canvas.addEventListener("mousemove", (e) => this.onMouseMove(e));
         this.canvas.addEventListener("click", (e) => {
+            this.selectPlanet(this.uniforms.uHoveredPlanet);
             if (this.uniforms.uHoveredPlanet != this.uniforms.uSelectedPlanet) {
                 let category = ["misc", "osint", "pwn", "web", "rev", "crypto"][this.uniforms.uHoveredPlanet];
                 (this as any).filter.categories = new Set([category]);
                 (this as any).setFilter({...(this as any).filter});
-
-                this.selectPlanet(this.uniforms.uHoveredPlanet);
             }
         });
 
@@ -258,6 +257,7 @@ export class Renderer {
     }
 
     selectPlanet(planet: number): void {
+        if (this.uniforms.uHoveredPlanet == this.uniforms.uSelectedPlanet) return;
         this.gl.useProgram(this.shaderProgram);
         const oldPos = this.uniforms.uPlanetPositions.slice(planet * 3, planet * 3 + 3);
         this.uniforms.uPlanetPositions[planet * 3] = 0;
