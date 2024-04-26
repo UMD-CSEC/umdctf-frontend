@@ -108,9 +108,9 @@ export default function Challenges(props: ChallengesProps) {
                 <line strokeWidth={2} ref={lineRef} />
                 <line strokeWidth={2} ref={line2Ref} />
                 <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={miscRef}>arrakis - misc</text>
-                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={webRef}>caladan - osint</text>
+                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={osintRef}>caladan - osint</text>
                 <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={pwnRef}>giedi prime - pwn</text>
-                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={osintRef}>tleilax - web</text>
+                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={webRef}>tleilax - web</text>
                 <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={revRef}>salusa secundus - rev</text>
                 <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={cryptoRef}>kaitain - crypto</text>
                 <line strokeWidth={1} ref={renderer.catLines[0]} />
