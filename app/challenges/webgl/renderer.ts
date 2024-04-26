@@ -6,7 +6,7 @@ import { Quality } from "./settings/quality";
 
 const defaultUniforms = {
     uTime: 0,
-    uQuality: Quality.MEDIUM,
+    uQuality: Quality.LOW,
     uResolution: [0, 0],
     uRotationOffset: [0, 0],
     uSelectedPlanet: 0,
@@ -14,10 +14,10 @@ const defaultUniforms = {
     uPlanetPositions: [
         0, 0, 0,
         4, -5, -100, // caladan
-        -50, 30, -100, // geedi
-        15, -35, -100, // ix
-        -15, 20, -100, // saluritsneaksr
-        -100, 23, -100, // tleinarsietnkstrzmtein
+        -50, 30, -100, // giedi prime
+        15, -35, -100, // tleilax
+        -15, 20, -100, // salusa secundus
+        -85, 26, -100, // kaitain
     ],
     uChallengeCount: 8,
     uCameraPosition: [2 * 1.125, 2 * 0.75, 2 * 2],
@@ -56,8 +56,6 @@ export class Renderer {
     private planetStartThetaOffset = 0;
 
     constructor(canvas?: HTMLCanvasElement) {
-        console.log("constructor")
-        defaultUniforms.uQuality = window.innerWidth < 700 ? Quality.LOW : Quality.MEDIUM;
         defaultUniforms.uResolution = [window.innerWidth, window.innerHeight];
         this.canvas = canvas ?? document.querySelector("canvas")!;
         this.gl = this.canvas.getContext("webgl2")!;
@@ -187,7 +185,7 @@ export class Renderer {
         this.canvas.addEventListener("mousemove", (e) => this.onMouseMove(e));
         this.canvas.addEventListener("click", (e) => {
             if (this.uniforms.uHoveredPlanet != this.uniforms.uSelectedPlanet) {
-                let category = ["misc", "web", "pwn", "ml", "rev", "crypto"][this.uniforms.uHoveredPlanet];
+                let category = ["misc", "osint", "pwn", "web", "rev", "crypto"][this.uniforms.uHoveredPlanet];
                 this.filter.categories = new Set([category]);
                 this.setFilter({...this.filter});
 
@@ -235,7 +233,6 @@ export class Renderer {
 
     getChallengePositionPx(): [number, number] {
         const planet = this.uniforms.uSelectedPlanet;
-        const ps = this.uniforms.uPlanetPositions;
         const [phi, theta] = [5 * Math.PI / 12, Math.PI / 5];
         const r = planetRadii[planet];
         const ce = [r * Math.sin(phi) * Math.cos(theta), r * Math.cos(phi), r * Math.sin(phi) * Math.sin(theta)];
@@ -276,6 +273,9 @@ export class Renderer {
 
         this.uniforms.uCameraPosition = this.cameraPosition();
         this.gl.uniform3fv(this.uniformLocations.uCameraPosition, this.uniforms.uCameraPosition);
+
+        this.uniforms.uRotationOffset = [0, 0];
+        this.gl.uniform2fv(this.uniformLocations.uRotationOffset, this.uniforms.uRotationOffset);
     }
 
     deselectChallenge(): void {

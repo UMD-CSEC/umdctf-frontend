@@ -20,8 +20,9 @@ export default function Challenge(props: Challenge & {solved: boolean}) {
     let currentTimeout = null;
 
     const deselectChallenge = () => {
+        if (!props.renderer) return;
         const renderer = props.renderer.renderer;
-        if (renderer === null) return;
+        if (!renderer) return;
         renderer.deselectChallenge();
         const line = props.lineRef.current;
         const line2 = props.line2Ref.current;
@@ -38,8 +39,9 @@ export default function Challenge(props: Challenge & {solved: boolean}) {
             clearTimeout(currentTimeout);
             currentTimeout = null;
         }
+        if (!props.renderer) return;
         const renderer = props.renderer.renderer;
-        if (renderer === null) return;
+        if (!renderer) return;
         /*for (let i = 0; i < props.renderer.cats.length; i++) {
             const textEle = props.renderer.cats[i].current;
             const [x, y] = renderer.getPlanetPositionPx(i);
@@ -77,24 +79,14 @@ export default function Challenge(props: Challenge & {solved: boolean}) {
                     <BiCheck className="flex-none bg-success/40 p-0.5 mb-0.5 rounded-full" />
                 )}
 
-                {preferences.classic ? (
-                    <button
-                        className="text-theme-bright hover:text-theme transition duration-200 ml-auto text-right text-pretty"
-                        onClick={() => setShowSolves(true)}
-                    >
-                        {props.solves} solve{props.solves === 1 ? '' : 's'}
-                        {' / '}
-                        {props.points} point{props.points === 1 ? '' : 's'}
-                    </button>
-                ) : (
-                    <p
-                        className="text-theme-bright transition duration-200 ml-auto text-right text-pretty"
-                    >
-                        {props.solves} solve{props.solves === 1 ? '' : 's'}
-                        {' / '}
-                        {props.points} point{props.points === 1 ? '' : 's'}
-                    </p>
-                )}
+                <button
+                    className="text-theme-bright hover:text-theme transition duration-200 ml-auto text-right text-pretty"
+                    onClick={() => setShowSolves(true)}
+                >
+                    {props.solves} solve{props.solves === 1 ? '' : 's'}
+                    {' / '}
+                    {props.points} point{props.points === 1 ? '' : 's'}
+                </button>
             </div>
             <h4 className="text-sm text-primary mt-0.5">
                 {props.author}
@@ -106,14 +98,12 @@ export default function Challenge(props: Challenge & {solved: boolean}) {
                 {props.description}
             </Markdown>
 
-            {preferences.classic ? (
-                <FlagSubmissionInput
-                    challenge={props}
-                    solved={props.solved}
-                />
-            ) : (<></>)}
+            <FlagSubmissionInput
+                challenge={props}
+                solved={props.solved}
+            />
 
-            {preferences.classic && props.files.length > 0 && (
+            {props.files.length > 0 && (
                 <div className="flex flex-wrap gap-1.5 mt-3 text-xs font-mono font-semibold">
                     {props.files.map((f) => (
                         <a

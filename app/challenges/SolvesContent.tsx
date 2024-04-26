@@ -25,7 +25,10 @@ export default function SolvesContent(props: SolvesContentProps) {
     const maxPage = Math.ceil(props.challenge.solves / SOLVES_PAGE_SIZE);
 
     useEffect(() => {
-        getSolves(props.challenge.id, 0).then((r) => setSolves(r.data.solves));
+        getSolves(props.challenge.id, 0).then((r) => {
+            if (r.data) setSolves(r.data.solves)
+        }
+    );
     }, []);
 
     async function updatePage(page: number) {

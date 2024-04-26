@@ -1,6 +1,6 @@
 'use client'
 
-import {useContext, useMemo, useRef, useEffect} from 'react';
+import {useContext, useMemo, useRef } from 'react';
 
 // Components
 import Challenge from '@/app/challenges/Challenge';
@@ -15,9 +15,7 @@ import type {Challenge as ChallengeData} from '@/util/challenges';
 import Filters from './Filters';
 import { Solve } from '@/util/profile';
 
-import { Renderer } from './webgl/renderer';
 import { Quality } from "./webgl/settings/quality";
-import { setupControls } from "./controls/setup";
 
 import dynamic from 'next/dynamic';
 
@@ -64,13 +62,13 @@ export default function Challenges(props: ChallengesProps) {
     const miscRef = useRef(null);
     const webRef = useRef(null);
     const pwnRef = useRef(null);
-    const mlRef = useRef(null);
+    const osintRef = useRef(null);
     const revRef = useRef(null);
     const cryptoRef = useRef(null);
     let renderer = {};
 
     renderer.numChallenges = filtered.length;
-    renderer.cats = [miscRef, webRef, pwnRef, mlRef, revRef, cryptoRef];
+    renderer.cats = [miscRef, osintRef, pwnRef, webRef, revRef, cryptoRef];
     renderer.catLines = [];
     for (let i = 0; i < 12; i++) {
         renderer.catLines.push(useRef(null));
@@ -81,8 +79,7 @@ export default function Challenges(props: ChallengesProps) {
     };
 
     const styles = {"fontFamily": "'Dune Rise'", "fontSize": "14px"};
-
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 768 || preferences.classic) {
         preferences.classic = true;
     } else {
         preferences.classic = false;
@@ -94,7 +91,7 @@ export default function Challenges(props: ChallengesProps) {
                 challenges={props.challenges}
                 solves={props.solves}
             />
-            <div className="flex flex-col gap-3 flex-grow min-w-0">
+            <div suppressHydrationWarning className="flex flex-col gap-3 flex-grow min-w-0">
                 {filtered.map((c) => (
                     <Challenge
                         {...c}
@@ -111,11 +108,11 @@ export default function Challenges(props: ChallengesProps) {
                 <line strokeWidth={2} ref={lineRef} />
                 <line strokeWidth={2} ref={line2Ref} />
                 <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={miscRef}>arrakis - misc</text>
-                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={webRef}>caladan - web</text>
+                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={webRef}>caladan - osint</text>
                 <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={pwnRef}>giedi prime - pwn</text>
-                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={mlRef}>ix - ml</text>
+                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={osintRef}>tleilax - web</text>
                 <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={revRef}>salusa secundus - rev</text>
-                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={cryptoRef}>tleilax - crypto</text>
+                <text className={'fill-white'} style={styles} textAnchor={'middle'} ref={cryptoRef}>kaitain - crypto</text>
                 <line strokeWidth={1} ref={renderer.catLines[0]} />
                 <line strokeWidth={1} ref={renderer.catLines[1]} />
                 <line strokeWidth={1} ref={renderer.catLines[2]} />
@@ -130,7 +127,7 @@ export default function Challenges(props: ChallengesProps) {
                 <line strokeWidth={1} ref={renderer.catLines[11]} />
             </svg>
             <div className="container relative pt-32 pb-14 pr-10 flex flex-col md:flex-row-reverse md:mr-0 md:max-w-[40%] gap-6">
-                <div className="flex flex-col gap-3 flex-grow min-w-0">
+                <div suppressHydrationWarning className="flex flex-col gap-3 flex-grow min-w-0">
                     {filtered.map((c, idx) => (
                         <Challenge
                             {...c}

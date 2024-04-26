@@ -69,7 +69,7 @@ export async function getChallenges(token: string): Promise<ChallengesResponse |
                     url: "http://localhost:1377/baguette",
                     name: "baguette"
                 }],
-                category: "ml",
+                category: "osint",
                 author: "seg L",
                 description: "impossible segal ml",
                 sortWeight: 3,

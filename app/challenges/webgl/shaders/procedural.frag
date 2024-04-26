@@ -496,7 +496,7 @@ vec3 atmosphereColor(int planetIndex, vec3 ro, vec3 rd, float spaceMask, Hit fir
   planetAtmosphere += pow(planetEdge, 50.) * .3 * (1.5 - planetMask);
   planetAtmosphere += pow(planetEdge, 15.) * .03;
   planetAtmosphere += pow(planetEdge, 5.) * .04 * planetMask;
-  planetAtmosphere *= planet.atmosphereColor * atmosphereMask * (1.0 - planetMask * min(satelliteMask + ringMask, 1.))  * step(distFromEdge, planet.radius / 4.);
+  planetAtmosphere *= planet.atmosphereColor * atmosphereMask * (1.0 - planetMask * min(satelliteMask + ringMask, 1.)) * (1. - smoothstep(planet.radius / 10., planet.radius / 8., distFromEdge));
   return planetAtmosphere;
 }
 
