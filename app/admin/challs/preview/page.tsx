@@ -11,6 +11,8 @@ import AdminChallengesPreviewAlert from '@/app/admin/challs/preview/AdminChallen
 import {AUTH_COOKIE_NAME} from '@/util/config';
 import {getAdminChallenges} from '@/util/admin';
 
+import ThemeSwitcher from "@/app/ThemeSwitcher";
+
 
 export default async function AdminChallengesPreview() {
     const token = cookies().get(AUTH_COOKIE_NAME)?.value;
@@ -24,13 +26,9 @@ export default async function AdminChallengesPreview() {
     const parsed = challenges.data.map(c => ({...c, points: c.points.max}));
 
     return (
-        <div className="container relative pt-32 pb-14 flex flex-col md:flex-row gap-6">
+        <div>
             <AdminChallengesPreviewAlert />
-
-            <Filters
-                challenges={parsed}
-                solves={[]}
-            />
+            {<ThemeSwitcher />}
             <Challenges
                 challenges={parsed}
                 solves={[]}
