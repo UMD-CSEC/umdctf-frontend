@@ -1,7 +1,7 @@
 'use client'
 
-import vertexShader from "../webgl/shaders/vertex.vert";
-import fragmentShader from "../webgl/shaders/procedural.frag";
+import vertexShader from "./shaders/vertex.vert";
+import fragmentShader from "./shaders/procedural.frag";
 import { Quality } from "./settings/quality";
 
 const defaultUniforms = {
@@ -158,27 +158,27 @@ export class Renderer {
                 window.innerWidth * quality,
                 window.innerHeight * quality
             );
-            for (let i = 0; i < this.cats.length; i++) {
-                const textEle = this.cats[i].current;
+            for (let i = 0; i < (this as any).cats.length; i++) {
+                const textEle = (this as any).cats[i].current;
                 const [x, y] = this.getPlanetPositionPx(i);
                 textEle.setAttribute("x", x+50);
                 textEle.setAttribute("y", y-9);
             }
-            for (let i = 0; i < this.catLines.length / 2; i++) {
+            for (let i = 0; i < (this as any).catLines.length / 2; i++) {
                 const [x, y] = this.getPlanetPositionPx(i);
-                const textEle = this.cats[i].current;
+                const textEle = (this as any).cats[i].current;
                 const width = textEle.getBoundingClientRect().width + 20;
                 textEle.setAttribute("x", x+width/2);
-                this.catLines[i*2].current.setAttribute("stroke", "yellow");
-                this.catLines[i*2+1].current.setAttribute("stroke", "yellow");
-                this.catLines[i*2].current.x1.baseVal.value = x;
-                this.catLines[i*2].current.y1.baseVal.value = y-5;
-                this.catLines[i*2].current.x2.baseVal.value = x+width;
-                this.catLines[i*2].current.y2.baseVal.value = y-5;
-                this.catLines[i*2+1].current.x1.baseVal.value = x+width;
-                this.catLines[i*2+1].current.y1.baseVal.value = y-5;
-                this.catLines[i*2+1].current.x2.baseVal.value = x+width+10;
-                this.catLines[i*2+1].current.y2.baseVal.value = y-20;
+                (this as any).catLines[i*2].current.setAttribute("stroke", "yellow");
+                (this as any).catLines[i*2+1].current.setAttribute("stroke", "yellow");
+                (this as any).catLines[i*2].current.x1.baseVal.value = x;
+                (this as any).catLines[i*2].current.y1.baseVal.value = y-5;
+                (this as any).catLines[i*2].current.x2.baseVal.value = x+width;
+                (this as any).catLines[i*2].current.y2.baseVal.value = y-5;
+                (this as any).catLines[i*2+1].current.x1.baseVal.value = x+width;
+                (this as any).catLines[i*2+1].current.y1.baseVal.value = y-5;
+                (this as any).catLines[i*2+1].current.x2.baseVal.value = x+width+10;
+                (this as any).catLines[i*2+1].current.y2.baseVal.value = y-20;
             }
         });
 
@@ -186,8 +186,8 @@ export class Renderer {
         this.canvas.addEventListener("click", (e) => {
             if (this.uniforms.uHoveredPlanet != this.uniforms.uSelectedPlanet) {
                 let category = ["misc", "osint", "pwn", "web", "rev", "crypto"][this.uniforms.uHoveredPlanet];
-                this.filter.categories = new Set([category]);
-                this.setFilter({...this.filter});
+                (this as any).filter.categories = new Set([category]);
+                (this as any).setFilter({...(this as any).filter});
 
                 this.selectPlanet(this.uniforms.uHoveredPlanet);
             }

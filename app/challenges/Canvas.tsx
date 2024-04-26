@@ -7,7 +7,7 @@ import { setupControls } from "./controls/setup";
 
 import FilterContext from '@/contexts/FilterContext';
 
-export default function Canvas({ innerRef, renderer }) {
+export default function Canvas({ innerRef, renderer }: { innerRef: any, renderer: any }) {
     const {filter, setFilter} = useContext(FilterContext);
     useEffect(() => {
         filter.categories = new Set(["misc"]);

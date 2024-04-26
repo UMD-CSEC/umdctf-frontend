@@ -65,7 +65,7 @@ export default function Challenges(props: ChallengesProps) {
     const osintRef = useRef(null);
     const revRef = useRef(null);
     const cryptoRef = useRef(null);
-    let renderer = {};
+    let renderer: any = {};
 
     renderer.numChallenges = filtered.length;
     renderer.cats = [miscRef, osintRef, pwnRef, webRef, revRef, cryptoRef];
@@ -74,7 +74,7 @@ export default function Challenges(props: ChallengesProps) {
         renderer.catLines.push(useRef(null));
     }
 
-    const qualityChangeHandler = (e) => {
+    const qualityChangeHandler = (e: any) => {
         renderer.renderer.setQuality(Quality[e.target.value]);
     };
 

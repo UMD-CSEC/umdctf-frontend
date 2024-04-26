@@ -13,11 +13,11 @@ import type {Challenge} from '@/util/challenges';
 import PreferencesContext from '@/contexts/PreferencesContext';
 
 
-export default function Challenge(props: Challenge & {solved: boolean}) {
+export default function Challenge(props: any) {
     const [showSolves, setShowSolves] = useState(false);
     const {preferences} = useContext(PreferencesContext);
 
-    let currentTimeout = null;
+    let currentTimeout: any = null;
 
     const deselectChallenge = () => {
         if (!props.renderer) return;
@@ -34,7 +34,7 @@ export default function Challenge(props: Challenge & {solved: boolean}) {
         }
     }
 
-    const selectChallenge = (ele) => {
+    const selectChallenge = (ele: any) => {
         if (currentTimeout !== null) {
             clearTimeout(currentTimeout);
             currentTimeout = null;
@@ -105,7 +105,7 @@ export default function Challenge(props: Challenge & {solved: boolean}) {
 
             {props.files.length > 0 && (
                 <div className="flex flex-wrap gap-1.5 mt-3 text-xs font-mono font-semibold">
-                    {props.files.map((f) => (
+                    {props.files.map((f: any) => (
                         <a
                             className="text-theme hover:text-theme-bright transition duration-200 bg-black/40 px-2.5 py-1 rounded"
                             href={f.url}
